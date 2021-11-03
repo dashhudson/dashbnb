@@ -1,7 +1,9 @@
 <template>
     <div>
         <h3>Listing</h3>
-        {{ listings }}
+        <template v-for="listing in listings">
+            <div v-if="listing" :key="listing.id">{{ listing }}</div>
+        </template>
     </div>
 </template>
 

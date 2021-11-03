@@ -25,8 +25,11 @@ export default {
   computed: {
     ...mapState(['authToken']),
   },
+  mounted() {
+    this.init();
+  },
   methods: {
-    ...mapActions(['logout']),
+    ...mapActions(['init', 'logout']),
     onLogoutClick() {
       this.logout();
     },
