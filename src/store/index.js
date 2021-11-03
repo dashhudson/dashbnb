@@ -11,6 +11,11 @@ export default new Vuex.Store({
     authToken: null,
     listings: [],
   },
+  getters: {
+    isLoggedIn(state) {
+      return !!state.authToken;
+    },
+  },
   mutations: {
     setAuthToken(state, newToken) {
       state.authToken = newToken;

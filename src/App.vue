@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <template v-if="authToken">
+    <TopNav />
+    <template v-if="isLoggedIn">
       <Listings />
-      <button @click="onLogoutClick">Logout</button>
     </template>
     <template v-else>
       <Login />
@@ -11,28 +11,27 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Login from './components/Login.vue'
 import Listings from './components/Listings.vue'
+import TopNav from './components/TopNav.vue'
 import './styles/main.scss';
 
 export default {
   name: 'App',
   components: {
     Listings,
-    Login
+    Login,
+    TopNav
   },
   computed: {
-    ...mapState(['authToken']),
+    ...mapGetters(['isLoggedIn']),
   },
   mounted() {
     this.init();
   },
   methods: {
-    ...mapActions(['init', 'logout']),
-    onLogoutClick() {
-      this.logout();
-    },
+    ...mapActions(['init']),
   }
 }
 </script>
@@ -45,7 +44,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  display: flex;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 24px;
+  max-width: 1024px;
 }
 </style>

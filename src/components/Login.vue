@@ -1,6 +1,6 @@
 <template>
     <div class="login-page">
-        <h3>Reservations Login</h3>
+        <h3>Login</h3>
         <div class="login-form">
             <input type="text" v-model="email" placeholder="Username" />
             <input type="password" v-model="password" placeholder="Password" />
@@ -42,6 +42,7 @@ export default {
 .login-page {
     width: 100%;
     max-width: 400px;
+    margin: auto;
 
     .login-form {
         display: flex;
