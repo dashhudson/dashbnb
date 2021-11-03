@@ -2,7 +2,7 @@
     <div>
         <h3>Listing</h3>
         <template v-for="listing in listings">
-            <div v-if="listing" :key="listing.id">{{ listing }}</div>
+            <div v-if="listing" :key="listing.id">{{ listing.id }} {{ listing.property_type }}</div>
         </template>
     </div>
 </template>

@@ -41,7 +41,7 @@ export default new Vuex.Store({
     },
     async getListings({ commit }) {
       const response = await apis.getListings();
-      commit('setListings', response.data);
+      commit('setListings', response.data.items);
     },
   },
   modules: {
