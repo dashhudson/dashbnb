@@ -18,6 +18,14 @@ input[type=email] {
   background-color: $white;
 }
 
+a {
+  transition: $transition-all;
+  cursor: pointer;
+  text-decoration: none;
+  color: $grey-text;
+  font-weight: medium;
+}
+
 button {
     display: flex;
     align-items: center;
