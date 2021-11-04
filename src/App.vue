@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <TopNav />
-    <template v-if="isLoggedIn">
-      <Listings />
-    </template>
-    <template v-else>
-      <Login />
-    </template>
+    <div class="main-content">
+      <template v-if="isLoggedIn">
+        <Listings />
+      </template>
+      <template v-else>
+        <Login />
+      </template>
+    </div>
   </div>
 </template>
 
@@ -41,12 +43,14 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 24px;
-  max-width: 1024px;
+
+  .main-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1024px;
+    padding: 24px;
+  }
 }
 </style>
