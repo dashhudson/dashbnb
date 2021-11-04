@@ -2,6 +2,12 @@
     <header class="top-nav">
         <div class="left">
             <div class="title">Reservations</div>
+            <nav>
+              <ul>
+                <li>Listings</li>
+                <li>My Reservations</li>
+              </ul>
+            </nav>
         </div>
         <div class="right">
             <template v-if="isLoggedIn">
@@ -57,6 +63,23 @@ export default {
     font-size: 24pt;
     font-weight: normal;
     line-height: 1.25em;
+  }
+
+  nav {
+    ul {
+      list-style-type: none;
+      margin: 0 0 0 10px;
+      padding: 0;
+
+      li {
+        display: inline-block;
+        padding: 10px;
+
+        a {
+
+        }
+      }
+    }
   }
 }
 </style>

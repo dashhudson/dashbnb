@@ -1,19 +1,27 @@
 <template>
     <div>
         <ControlBar title="Listings">
-            Filter
+        <select>
+          <option>All Listings</option>
+          <option>Cottage</option>
+          <option>House</option>
+          <option>Hotel</option>
+          <option>Resort</option>
+        </select>
         </ControlBar>
         <template v-if="loading">
             Loading ...
         </template>
         <template v-else>
-            <List :items="listings" #default="{ item: listing }">
-                <div>
-                    <div>Property: {{ listing.property_type }}</div>
-                    <div>Place: {{ listing.place_type }}</div>
-                    <div>Occupancy: {{ listing.occupancy }}</div>
-                </div>
-            </List>
+        <List :items="listings" >
+            <template #default="{ item: listing }">
+              <div>
+                <div>Property: {{ listing.property_type }}</div>
+                <div>Place: {{ listing.place_type }}</div>
+                <div>Occupancy: {{ listing.occupancy }}</div>
+              </div>
+            </template>
+        </List>
         </template>
     </div>
 </template>
