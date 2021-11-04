@@ -3,7 +3,7 @@
     <TopNav />
     <div class="main-content">
       <template v-if="isLoggedIn">
-        <Listings />
+        <component v-bind:is="currentPage"/>
       </template>
       <template v-else>
         <Login />
@@ -14,6 +14,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import NotFound from './components/NotFound.vue'
 import Login from './components/Login.vue'
 import Listings from './components/Listings.vue'
 import TopNav from './components/TopNav.vue'
@@ -24,10 +25,12 @@ export default {
   components: {
     Listings,
     Login,
-    TopNav
+    TopNav,
+    NotFound
   },
   computed: {
     ...mapGetters(['isLoggedIn']),
+    ...mapGetters(['currentPage']),
   },
   mounted() {
     this.init();

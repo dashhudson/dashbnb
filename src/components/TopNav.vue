@@ -4,8 +4,8 @@
             <div class="title">Reservations</div>
             <nav>
               <ul>
-                <li>Listings</li>
-                <li>My Reservations</li>
+                <li><a @click="gotoPage('listings')">Listings</a></li>
+                <li><a @click="gotoPage('NotFound')">My Reservations</a></li>
               </ul>
             </nav>
         </div>
@@ -26,6 +26,7 @@ export default {
   },
     methods: {
         ...mapActions(['logout']),
+        ...mapActions(['gotoPage']),
         onLogoutClick() {
            this.logout();
         },
