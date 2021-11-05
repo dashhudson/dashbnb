@@ -16,6 +16,10 @@
         <List :items="listings" >
             <template #default="{ item: listing }">
               <div>
+                <img :src="listing.images[0].url" />
+              </div>
+              <div>
+                <div><h2> {{ listing.name }}</h2></div>
                 <div>Property: {{ listing.property_type }}</div>
                 <div>Place: {{ listing.place_type }}</div>
                 <div>Occupancy: {{ listing.occupancy }}</div>
@@ -60,3 +64,17 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.item-details {
+  h2 {
+    margin-top: 0px;
+  }
+  img {
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    margin-right: 20px;
+  }
+}
+</style>
