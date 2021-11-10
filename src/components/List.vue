@@ -48,8 +48,7 @@ export default {
 .main-content-panel {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
-  display: flex;
-  flex-direction: row;
+  width: 100%;
 }
 
 .action-panel {
