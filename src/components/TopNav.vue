@@ -7,7 +7,7 @@
             <template v-if="isLoggedIn">
                 <nav>
                   <ul>
-                    <li><a @click="gotoPage('NotFound')"><img src="@/assets/icons/calendar-check.svg" /> My Reservations</a></li>
+                    <li><a @click="gotoPage('NotFound')"><img src="@/assets/icons/calendar-check.svg" /> My Bookings</a></li>
                     <li><a @click="onLogoutClick"><img src="@/assets/icons/logout.svg" /> Logout</a></li>
                   </ul>
                 </nav>
@@ -93,11 +93,13 @@ export default {
       padding: 0;
 
       li {
-        padding: 10px;
+        padding: 10px 40px 10px 24px;
 
         a {
           display: flex;
           align-items: center;
+          font-size: 14px;
+          font-weight: 500;
 
           img {
             margin-right: 4px;
