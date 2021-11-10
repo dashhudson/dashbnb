@@ -35,11 +35,14 @@ export default {
 }
 
 .item-details {
+  background-color: $white;
   display: flex;
   flex-grow: 1;
-  border-radius: 0.25rem;
+  margin-bottom: 16px;
+  border-radius: $round-corner-small;
   padding: 1.375rem 0 1.25rem 0;
   align-items: center;
+  box-shadow: $shadow-card;
 }
 
 .main-content-panel {
@@ -56,7 +59,4 @@ export default {
   flex-direction: row;
 }
 
-.item-details:nth-child(odd) {
-  background-color: #f8f8f8;
-}
 </style>
