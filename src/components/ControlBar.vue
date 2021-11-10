@@ -23,7 +23,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     margin-top: 100px;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
 
     .title {
         font-size: 20pt;
