@@ -6,6 +6,10 @@
     font-family: "Mark";
 }
 
+body {
+  background-color: $grey-bg;
+}
+
 input[type=text],
 input[type=password],
 input[type=email] {
@@ -41,7 +45,6 @@ button {
     font-size: 0.875rem;
     line-height: 2rem;
     color: $grey-text;
-    background-color: $grey-bg;
     cursor: pointer;
     transition: $transition-all;
 
@@ -75,6 +78,7 @@ select {
   font-weight: 500;
   appearance: none;
   text-align: center;
+  cursor: pointer;
 
   &:focus,
   &:active {
