@@ -4,10 +4,10 @@
             <img :src="value.images[0].url" />
         </div>
         <div>
-            <div><h2> {{ value.name }}</h2></div>
-            <div>Property: {{ value.property_type }}</div>
-            <div>Place: {{ value.place_type }}</div>
-            <div>Occupancy: {{ value.occupancy }}</div>
+            <div class="address">{{ value.address.city }}, {{ value.address.state }}, {{ value.address.country }}</div>
+            <div class="name">{{ value.name }}</div>
+            <SummaryList :items="rooms" />
+            <SummaryList :items="amenities" />
         </div>
         <Rating class="listing-rating" :value="value.rating" />
         <div class="book-now-area d-flex flex-column align-end">
@@ -21,12 +21,14 @@
 import Rating from './Rating.vue';
 import Price from './Price.vue';
 import Button from './Button.vue';
+import SummaryList from './SummaryList.vue';
 
 export default {
     components: {
         Rating,
         Price,
         Button,
+        SummaryList,
     },
     props: {
         value: {
@@ -34,6 +36,29 @@ export default {
             default: null,
         },
     },
+    computed: {
+        rooms() {
+            const list = [];
+            if (this.value) {
+                list.push(`${this.value.occupancy} guests`);
+                if (this.value.bedrooms > 0) {
+                    list.push(`${this.value.bedrooms} bedrooms`);
+                }
+                if (this.value.bathrooms > 0) {
+                    list.push(`${this.value.bathrooms} bathrooms`);
+                }
+            }
+            return list;
+        },
+        amenities() {
+            return this.value ? Object.keys(this.value.amenities).reduce((results, key) => {
+                if (this.value.amenities[key]) {
+                    results.push(key);
+                }
+                return results;
+            }, []) : [];
+        }
+    }
 }
 </script>
 
@@ -43,15 +68,28 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: row;
+  height: 208px;
 
   h2 {
     margin-top: 0px;
   }
   img {
     object-fit: cover;
-    height: 150px;
-    width: 150px;
-    margin-right: 20px;
+    width: 300px;
+    height: 100%;
+    margin-right: 12px;
+  }
+
+  .name {
+      font-size: 24px;
+      color: $grey-text;
+      padding-bottom: 8px;
+  }
+
+  .address {
+      font-size: 16px;
+      color: $grey-text;
+      padding-bottom: 8px;
   }
 
 }

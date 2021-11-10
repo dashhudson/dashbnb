@@ -26,6 +26,6 @@ export default {
 }
 .rating-value {
     color: $grey-text;
-    font-size: 16pt;
+    font-size: 16px;
 }
 </style>

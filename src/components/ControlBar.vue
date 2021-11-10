@@ -22,11 +22,11 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 100px;
+    margin-top: 40px;
     margin-bottom: 24px;
 
     .title {
-        font-size: 20pt;
+        font-size: 20px;
         font-weight: normal;
         line-height: 1.25em;
     }

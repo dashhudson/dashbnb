@@ -66,7 +66,7 @@ export default {
   }
 
   .title {
-    font-size: 24pt;
+    font-size: 24px;
     line-height: 50px;
     cursor: pointer;
   }

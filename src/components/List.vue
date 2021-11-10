@@ -6,7 +6,7 @@
                     <slot :item="item" />
                 </div>
 
-                <div class="action-panel">
+                <div v-if="$slots['action-content']" class="action-panel">
                     <slot name="action-content" :item="item" />
                 </div>
             </div>
