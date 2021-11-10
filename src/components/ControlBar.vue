@@ -1,10 +1,7 @@
 <template>
     <div class="control-bar">
         <div class="control-bar-left">
-            <div v-if="title" class="title">{{ title }}</div>
-        </div>
-        <div class="control-bar-right">
-            <slot />
+          <slot />
         </div>
     </div>
 </template>
@@ -25,6 +22,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 100px;
     margin-bottom: 12px;
 
     .title {
