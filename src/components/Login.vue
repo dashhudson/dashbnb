@@ -1,8 +1,7 @@
 <template>
     <div class="login-page">
-        <h3>Login</h3>
         <div class="login-form">
-            <input type="text" v-model="email" placeholder="Username" />
+            <input type="text" v-model="email" placeholder="Your email" />
             <input type="password" v-model="password" placeholder="Password" />
             <button @click="onLoginClick">Login</button>
             <div v-if="error">
@@ -47,8 +46,30 @@ export default {
     .login-form {
         display: flex;
         flex-direction: column;
+        margin-top: 320px;
+        width: 400px;
+        padding: 48px;
+        border-radius: 6px;
+        background-color: $white;
+        box-shadow: $shadow-login;
+
         &> * {
             margin-top: 12px;
+        }
+
+        input {
+          width: 100%;
+          border-radius: 20px;
+          margin-bottom: 16px;
+          color: #ADADAD;
+        }
+
+        button {
+          font-size: 18px;
+          color: #FFFFFF;
+          font-family: "Mark OT";
+          border-radius: 20px;
+          background-color: #D6B034;
         }
     }
 }
