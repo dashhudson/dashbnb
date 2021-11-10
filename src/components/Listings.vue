@@ -1,13 +1,13 @@
 <template>
     <div>
-        <ControlBar title="Listings">
-        <select>
-          <option>All Listings</option>
-          <option>Cottage</option>
-          <option>House</option>
-          <option>Hotel</option>
-          <option>Resort</option>
-        </select>
+        <ControlBar>
+          <select>
+            <option>All Listings</option>
+            <option>Cottage</option>
+            <option>House</option>
+            <option>Hotel</option>
+            <option>Resort</option>
+          </select>
         </ControlBar>
         <template v-if="loading">
             Loading ...

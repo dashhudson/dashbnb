@@ -61,3 +61,23 @@ button {
       transform: translateY(0);
     }
   }
+
+select {
+  box-sizing: border-box;
+  height: 2.5em;
+  border: 1px solid $grey-border;
+  border-radius: $button-border-radius;
+  background-color: $white;
+  padding: 0 1.5rem;
+  color: $grey-text;
+  font-family: "Mark";
+  font-size: 0.875rem;
+  font-weight: 500;
+  appearance: none;
+  text-align: center;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
