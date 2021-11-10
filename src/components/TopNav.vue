@@ -53,7 +53,6 @@ export default {
 
   .center {
     width: 400px;
-    height: 100px;
     text-align: center;
     position: absolute;
     left: 50%;
@@ -64,7 +63,6 @@ export default {
       display: flex;
       justify-content: flex-end;
       width: 500px;
-      height: 100px;
       margin-left: auto;
   }
 
