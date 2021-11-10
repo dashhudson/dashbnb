@@ -67,9 +67,8 @@ export default {
         button {
           font-size: 18px;
           color: #FFFFFF;
-          font-family: "Mark OT";
           border-radius: 20px;
-          background-color: #D6B034;
+          background-color: $gold;
         }
     }
 }
