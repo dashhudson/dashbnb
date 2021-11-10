@@ -1,16 +1,15 @@
 <template>
     <header class="top-nav">
         <div class="center">
-            <div class="title"><span class='logo-gold'>DASH</span><span class='logo-black'>BNB</span></div>
+            <div class="title" @click="gotoPage('listings')"><span class='logo-gold'>DASH</span><span class='logo-black'>BNB</span></div>
         </div>
         <div class="right">
             <template v-if="isLoggedIn">
                 <nav>
                   <ul>
-                    <li><a @click="gotoPage('listings')">Listings</a></li>
-                    <li><a @click="gotoPage('NotFound')">My Reservations</a></li>
+                    <li><a @click="gotoPage('NotFound')"><img src="@/assets/icons/calendar-check.svg" /> My Reservations</a></li>
+                    <li><a @click="onLogoutClick"><img src="@/assets/icons/logout.svg" /> Logout</a></li>
                   </ul>
-                  <button @click="onLogoutClick">Logout</button>
                 </nav>
             </template>
         </div>
@@ -52,7 +51,7 @@ export default {
   padding: 0 0.4rem;
 
   .center {
-    width: 400px;
+    width: 200px;
     text-align: center;
     position: absolute;
     left: 50%;
@@ -69,6 +68,7 @@ export default {
   .title {
     font-size: 24pt;
     line-height: 50px;
+    cursor: pointer;
   }
 
   .logo-black {
@@ -94,6 +94,15 @@ export default {
 
       li {
         padding: 10px;
+
+        a {
+          display: flex;
+          align-items: center;
+
+          img {
+            margin-right: 4px;
+          }
+        }
       }
     }
   }
