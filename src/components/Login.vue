@@ -3,7 +3,7 @@
         <div class="login-form">
             <input type="text" v-model="email" placeholder="Your email" />
             <input type="password" v-model="password" placeholder="Password" />
-            <button @click="onLoginClick">Login</button>
+            <Button class="login-button" @click.native="onLoginClick">Login</Button>
             <div v-if="error">
                 {{ error }}
             </div>
@@ -13,8 +13,12 @@
 
 <script>
 import { mapActions } from 'vuex';
+import Button from './Button.vue';
 
 export default {
+    components: {
+        Button,
+    },
     data() {
         return {
             email: null,
@@ -64,11 +68,8 @@ export default {
           color: #ADADAD;
         }
 
-        button {
-          font-size: 18px;
-          color: #FFFFFF;
-          border-radius: 20px;
-          background-color: $gold;
+        .login-button {
+            width: 100%;
         }
     }
 }

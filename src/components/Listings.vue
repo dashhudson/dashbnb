@@ -26,6 +26,10 @@
                   <div>Occupancy: {{ listing.occupancy }}</div>
                 </div>
                 <Rating class="listing-rating" :value="listing.rating" />
+                <div class="book-now-area d-flex flex-column align-end">
+                  <Price class="book-price" :value="listing.price" />
+                  <Button>BOOK NOW</Button>
+                </div>
               </div>
             </template>
         </List>
@@ -38,11 +42,15 @@ import { mapState, mapActions } from 'vuex';
 import List from './List.vue';
 import ControlBar from './ControlBar.vue';
 import Rating from './Rating.vue';
+import Price from './Price.vue';
+import Button from './Button.vue';
 
 export default {
     components: {
+        Button,
         ControlBar,
         List,
+        Price,
         Rating,
     },
     data() {
@@ -94,5 +102,14 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
+}
+.book-now-area {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  .book-price {
+    padding-bottom: 10px;
+  }
 }
 </style>

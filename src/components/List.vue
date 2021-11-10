@@ -40,14 +40,12 @@ export default {
   flex-grow: 1;
   margin-bottom: 16px;
   border-radius: $round-corner-small;
-  padding: 1.375rem 0 1.25rem 0;
+  padding: 16px;
   align-items: center;
   box-shadow: $shadow-card;
 }
 
 .main-content-panel {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
   width: 100%;
 }
 
