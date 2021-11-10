@@ -1,17 +1,17 @@
 <template>
     <header class="top-nav">
-        <div class="left">
-            <div class="title">Reservations</div>
-            <nav>
-              <ul>
-                <li><a @click="gotoPage('listings')">Listings</a></li>
-                <li><a @click="gotoPage('NotFound')">My Reservations</a></li>
-              </ul>
-            </nav>
+        <div class="center">
+            <div class="title"><span class='logo-gold'>DASH</span><span class='logo-black'>BNB</span></div>
         </div>
         <div class="right">
             <template v-if="isLoggedIn">
-                <button @click="onLogoutClick">Logout</button>
+                <nav>
+                  <ul>
+                    <li><a @click="gotoPage('listings')">Listings</a></li>
+                    <li><a @click="gotoPage('NotFound')">My Reservations</a></li>
+                  </ul>
+                  <button @click="onLogoutClick">Logout</button>
+                </nav>
             </template>
         </div>
     </header>
@@ -36,8 +36,8 @@ export default {
 
 <style lang="scss" scoped>
 .top-nav {
-  background: #fff;
-  height: 3.125rem;
+  background: $white;
+  height: 50px;
   width: 100%;
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.05);
   position: fixed;
@@ -45,40 +45,57 @@ export default {
   left: 0;
   z-index: z-index('nav');
   display: flex;
+  justify-content: flex-start;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: stretch;
   padding: 0 0.4rem;
 
-  .left {
-    display: flex;
-    align-items: center;
+  .center {
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .right {
       display: flex;
-      align-items: center;
+      justify-content: flex-end;
+      width: 500px;
+      height: 100px;
+      margin-left: auto;
   }
 
   .title {
     font-size: 24pt;
-    font-weight: normal;
-    line-height: 1.25em;
+    line-height: 50px;
+  }
+
+  .logo-black {
+    font-weight: 300;
+  }
+
+  .logo-gold {
+    font-weight: 300;
+    color: $gold;
   }
 
   nav {
+    display: inline-flex;
+    height: 50px;
+    align-items: center;
+
     ul {
+      display: flex;
+      justify-content: flex-end;
       list-style-type: none;
       margin: 0 0 0 10px;
       padding: 0;
 
       li {
-        display: inline-block;
         padding: 10px;
-
-        a {
-
-        }
       }
     }
   }
