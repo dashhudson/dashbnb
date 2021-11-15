@@ -1,5 +1,5 @@
 {
-  "name": "Reservations",
+  "name": "DASHBNB",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "v-calendar": "^2.3.4",
     "vue": "^2.6.11",
     "vuex": "^3.4.0"
   },

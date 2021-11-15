@@ -1,4 +1,4 @@
-# reservations
+# DASHBNB
 Frontend Code test
 ## Project setup
 ```
