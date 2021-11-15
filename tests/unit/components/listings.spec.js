@@ -24,6 +24,7 @@ describe('components/Listings.vue', () => {
         store = new Vuex.Store(cloneDeep(StoreConfig));
     });
     afterEach(() => {
+        mockAxios.reset();
         if (wrapper) {
             wrapper.destroy();
         }
