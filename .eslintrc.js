@@ -21,8 +21,13 @@ module.exports = {
         '**/tests/unit/**/*.spec.{j,t}s?(x)'
       ],
       env: {
-        jest: true
-      }
+        jest: true,
+      },
+      globals: {
+        flushPromises: 'readonly',
+        mockAxios: 'readonly',
+        fail: 'readonly',
+      },
     }
   ]
 }

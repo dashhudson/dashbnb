@@ -51,6 +51,8 @@ export default {
             this.loading = true;
             try {
                 await this.getListings();
+            } catch(error) {
+                console.log(error);
             } finally {
                 this.loading = false;
             }
