@@ -42,7 +42,6 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: z-index('nav');
   display: flex;
   justify-content: flex-start;
   flex-flow: row nowrap;
