@@ -71,8 +71,8 @@ select {
   height: 2.5em;
   border: 1px solid $grey-border;
   border-radius: $button-border-radius;
-  background-color: $white;
   padding: 0 1.5rem;
+  padding-right: 2rem;
   color: $grey-text;
   font-family: "Mark";
   font-size: 0.875rem;
@@ -80,6 +80,10 @@ select {
   appearance: none;
   text-align: center;
   cursor: pointer;
+  background-image: url('../assets/icons/arrow-right-small.svg');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-color: $white;
 
   &:focus,
   &:active {
