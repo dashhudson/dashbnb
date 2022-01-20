@@ -31,5 +31,9 @@
     "sass-loader": "^8.0.2",
     "style-resources-loader": "^1.4.1",
     "vue-template-compiler": "^2.6.11"
+  },
+  "engines": {
+    "node": "14.17",
+    "npm": "7.19"
   }
 }

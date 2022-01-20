@@ -2,6 +2,9 @@
 Frontend Code test
 ## Project setup
 ```
+nvm install 14.17
+nvm use
+npm install -g npm@7.19
 npm install
 ```
 
