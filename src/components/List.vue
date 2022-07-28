@@ -2,7 +2,7 @@
     <div class="list-container">
         <template v-if="hasItems">
             <template v-for="(item, index) in items">
-                <div :key="`item-${index}`" class="item-details">
+                <Card :key="`item-${index}`">
                     <div class="main-content-panel">
                         <slot :item="item" />
                     </div>
@@ -10,7 +10,7 @@
                     <div v-if="$slots['action-content']" class="action-panel">
                         <slot name="action-content" :item="item" />
                     </div>
-                </div>
+                </Card>
             </template>
         </template>
         <template v-else>
@@ -22,8 +22,13 @@
 </template>
 
 <script>
+import Card from './Card.vue';
+
 export default {
   name: 'List',
+  components: {
+    Card,
+  },
   props: {
     /**
      * items to display in the list
@@ -48,17 +53,6 @@ export default {
 <style lang="scss" scoped>
 .list-container {
   overflow: auto;
-}
-
-.item-details {
-  background-color: $white;
-  display: flex;
-  flex-grow: 1;
-  margin-bottom: 16px;
-  border-radius: $round-corner-small;
-  padding: 16px;
-  align-items: center;
-  box-shadow: $shadow-card;
 }
 
 .main-content-panel {

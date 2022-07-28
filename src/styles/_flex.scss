@@ -15,7 +15,11 @@
 }
 
 .flex-row {
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.flex-grow {
+    flex-grow: 1;
 }
 
 .justify-end {

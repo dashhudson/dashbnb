@@ -8,6 +8,7 @@ export default {
     authToken: null,
     currentPage: null,
     currentUser: null,
+    currentListing: null,
     listings: null,
     bookings: null,
   },
@@ -20,6 +21,9 @@ export default {
     },
     currentUser(state) {
         return state.currentUser;
+    },
+    currentListing(state) {
+        return state.currentListing;
     },
   },
   mutations: {
@@ -34,6 +38,9 @@ export default {
       } else {
         localStorage.removeItem(AUTH_TOKEN_NAME);
       }
+    },
+    updateCurrentListing(state, newListing) {
+        state.currentListing = newListing;
     },
     setListings(state, newListings) {
       state.listings = newListings;
