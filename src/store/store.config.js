@@ -45,6 +45,7 @@ export default {
     async login({ commit }, { email, password }) {
         const response = await apis.login({ email, password });
         commit('setAuthToken', response.data.authToken);
+        commit('setCurrentPage', DEFAULT_PAGE);
     },
     async logout({ commit }) {
       commit('setAuthToken', null);

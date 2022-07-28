@@ -14,9 +14,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import NotFound from './components/NotFound.vue'
-import Login from './components/Login.vue'
-import Listings from './components/Listings.vue'
+import NotFound from './pages/NotFound.vue'
+import Login from './pages/Login.vue'
+import Listings from './pages/Listings.vue'
 import TopNav from './components/TopNav.vue'
 import './styles/main.scss';
 

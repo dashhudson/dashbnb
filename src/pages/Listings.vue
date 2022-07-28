@@ -24,9 +24,9 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import List from './List.vue';
-import ControlBar from './ControlBar.vue';
-import Listing from './Listing.vue';
+import List from '../components/List.vue';
+import ControlBar from '../components/ControlBar.vue';
+import Listing from '../components/Listing.vue';
 
 export default {
     components: {

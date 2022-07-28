@@ -1,7 +1,7 @@
 <template>
     <header class="top-nav">
         <div class="center">
-            <div class="title" @click="gotoPage('listings')"><span class='logo-gold'>DASH</span><span class='logo-black'>BNB</span></div>
+            <div class="title" @click="gotoPage('Listings')"><span class='logo-gold'>DASH</span><span class='logo-black'>BNB</span></div>
         </div>
         <div class="right">
             <template v-if="isLoggedIn">
