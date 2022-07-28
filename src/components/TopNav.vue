@@ -7,7 +7,7 @@
             <template v-if="isLoggedIn">
                 <nav>
                   <ul>
-                    <li><a @click="gotoPage('NotFound')"><img src="@/assets/icons/calendar-check.svg" /> My Bookings</a></li>
+                    <li><a @click="gotoPage('MyBookings')"><img src="@/assets/icons/calendar-check.svg" /> My Bookings</a></li>
                     <li><a @click="onLogoutClick"><img src="@/assets/icons/logout.svg" /> Logout</a></li>
                   </ul>
                 </nav>

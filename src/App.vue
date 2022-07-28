@@ -17,14 +17,18 @@ import { mapGetters, mapActions } from 'vuex';
 import NotFound from './pages/NotFound.vue'
 import Login from './pages/Login.vue'
 import Listings from './pages/Listings.vue'
+import MyBookings from './pages/MyBookings.vue'
+import BookListing from './pages/BookListing.vue'
 import TopNav from './components/TopNav.vue'
 import './styles/main.scss';
 
 export default {
   name: 'App',
   components: {
+    BookListing,
     Listings,
     Login,
+    MyBookings,
     TopNav,
     NotFound
   },

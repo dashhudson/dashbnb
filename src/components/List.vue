@@ -1,14 +1,21 @@
 <template>
     <div class="list-container">
-        <template v-for="(item, index) in items">
-            <div :key="`item-${index}`" class="item-details">
-                <div class="main-content-panel">
-                    <slot :item="item" />
-                </div>
+        <template v-if="hasItems">
+            <template v-for="(item, index) in items">
+                <div :key="`item-${index}`" class="item-details">
+                    <div class="main-content-panel">
+                        <slot :item="item" />
+                    </div>
 
-                <div v-if="$slots['action-content']" class="action-panel">
-                    <slot name="action-content" :item="item" />
+                    <div v-if="$slots['action-content']" class="action-panel">
+                        <slot name="action-content" :item="item" />
+                    </div>
                 </div>
+            </template>
+        </template>
+        <template v-else>
+            <div class="d-flex align-center justify-center">
+                <div>{{ emptyMessage }}</div>
             </div>
         </template>
     </div>
@@ -23,9 +30,18 @@ export default {
      */
     items: {
       type: Array,
-      default: () => [],
+      default: null,
+    },
+    emptyMessage: {
+        type: String,
+        default: 'No Items',
     },
   },
+  computed: {
+    hasItems() {
+        return Array.isArray(this.items) && this.items?.length > 0;
+    },
+  }
 };
 </script>
 
