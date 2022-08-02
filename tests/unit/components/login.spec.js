@@ -2,13 +2,13 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import cloneDeep from 'lodash/cloneDeep';
 
-import Login from '../../../src/components/Login.vue';
+import Login from '../../../src/pages/Login.vue';
 import StoreConfig from '../../../src/store/store.config';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('components/Login.vue', () => {
+describe('pages/Login.vue', () => {
     let wrapper;
     let store;
 
@@ -34,6 +34,7 @@ describe('components/Login.vue', () => {
         const email = 'batman@dashhudson.com';
         const password = 'B@tM0bile';
         const token = 'MySuperSecretToken';
+        mockAxios.onGet('/auth/me').reply(200, { role: 'user' });
         mockAxios.onPost('/auth/login').reply(200, { authToken: token });
         wrapper = createComponent();
         await wrapper.setData({

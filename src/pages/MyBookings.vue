@@ -1,21 +1,13 @@
 <template>
     <div>
-        <ControlBar>
-          <select>
-            <option>All Listings</option>
-            <option>Cottage</option>
-            <option>House</option>
-            <option>Hotel</option>
-            <option>Resort</option>
-          </select>
-        </ControlBar>
+        <h3>My Bookings</h3>
         <template v-if="loading">
             Loading ...
         </template>
         <template v-else>
-        <List :items="listings" >
-            <template #default="{ item: listing }">
-              <Listing :key="listing.id" :value="listing" />
+        <List :items="bookings" empty-message="No Bookings Found" >
+            <template #default="{ item: booking }">
+              <Booking :key="booking.id" :value="booking" />
             </template>
         </List>
         </template>
@@ -24,15 +16,13 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import List from './List.vue';
-import ControlBar from './ControlBar.vue';
-import Listing from './Listing.vue';
+import List from '../components/List.vue';
+import Booking from '../components/Booking.vue';
 
 export default {
     components: {
-        ControlBar,
         List,
-        Listing,
+        Booking,
     },
     data() {
         return {
@@ -40,17 +30,17 @@ export default {
         };
     },
     computed: {
-        ...mapState(['listings']),
+        ...mapState(['bookings']),
     },
     mounted() {
         this.initPage();
     },
     methods: {
-        ...mapActions(['getListings']),
+        ...mapActions(['getBookings']),
         async initPage() {
             this.loading = true;
             try {
-                await this.getListings();
+                await this.getBookings();
             } catch(error) {
                 console.log(error);
             } finally {

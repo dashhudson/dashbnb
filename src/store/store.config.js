@@ -1,13 +1,16 @@
 import apis from '../apis';
 
 const AUTH_TOKEN_NAME = 'authToken';
-const DEFAULT_PAGE = 'listings';
+const DEFAULT_PAGE = 'Listings';
 
 export default {
   state: {
     authToken: null,
     currentPage: null,
-    listings: [],
+    currentUser: null,
+    currentListing: null,
+    listings: null,
+    bookings: null,
   },
   getters: {
     isLoggedIn(state) {
@@ -16,9 +19,18 @@ export default {
     currentPage(state) {
       return state.currentPage;
     },
+    currentUser(state) {
+        return state.currentUser;
+    },
+    currentListing(state) {
+        return state.currentListing;
+    },
   },
   mutations: {
-    setAuthToken(state, newToken) {
+    updateCurrentUser(state, newUser) {
+        state.currentUser = newUser;
+    },
+    updateAuthToken(state, newToken) {
       state.authToken = newToken;
       apis.setToken(newToken);
       if (newToken) {
@@ -27,31 +39,55 @@ export default {
         localStorage.removeItem(AUTH_TOKEN_NAME);
       }
     },
+    updateCurrentListing(state, newListing) {
+        state.currentListing = newListing;
+    },
     setListings(state, newListings) {
       state.listings = newListings;
+    },
+    setBookings(state, newBookings) {
+      state.bookings = newBookings;
     },
     setCurrentPage(state, page) {
       state.currentPage = page;
     }
   },
   actions: {
-    async init({ commit }) {
+    async init({ dispatch, commit }) {
       const storedToken = localStorage.getItem(AUTH_TOKEN_NAME);
       if (storedToken) {
-        commit('setAuthToken', storedToken);
+        dispatch('setAuthToken', storedToken);
       }
       commit('setCurrentPage', DEFAULT_PAGE);
     },
-    async login({ commit }, { email, password }) {
+    async login({ dispatch, commit }, { email, password }) {
         const response = await apis.login({ email, password });
-        commit('setAuthToken', response.data.authToken);
+        dispatch('setAuthToken', response.data.authToken);
+        commit('setCurrentPage', DEFAULT_PAGE);
     },
-    async logout({ commit }) {
-      commit('setAuthToken', null);
+    async logout({ dispatch }) {
+        dispatch('setAuthToken', null);
+    },
+    async setAuthToken({ commit }, token) {
+        commit('updateAuthToken', token);
+        if (token) {
+            const response = await apis.getCurrentUser();
+            commit('updateCurrentUser', response?.data);
+        } else {
+            commit('updateCurrentUser', null);
+        }
     },
     async getListings({ commit }) {
       const response = await apis.getListings();
       commit('setListings', response.data.items);
+    },
+    async getBookings({ commit }) {
+        const response = await apis.getMyReservations();
+        commit('setBookings', response.data.items);
+    },
+    async deleteBooking({ dispatch }, { id }) {
+        await apis.deleteReservation({ id });
+        dispatch('getBookings');
     },
     async gotoPage({ commit }, page) {
       commit('setCurrentPage', page);

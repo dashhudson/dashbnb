@@ -2,13 +2,13 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import cloneDeep from 'lodash/cloneDeep';
 
-import Listings from '../../../src/components/Listings.vue';
+import Listings from '../../../src/pages/Listings.vue';
 import StoreConfig from '../../../src/store/store.config';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('components/Listings.vue', () => {
+describe('pages/Listings.vue', () => {
     let wrapper;
     let store;
 

@@ -15,9 +15,17 @@
 }
 
 .flex-row {
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.flex-grow {
+    flex-grow: 1;
 }
 
 .justify-end {
     justify-content: flex-end;
+}
+
+.justify-center {
+    justify-content: center;
 }

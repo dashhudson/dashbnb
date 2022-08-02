@@ -1,34 +1,33 @@
 <template>
-    <div class="listing-item">
-        <div>
-            <img :src="value.images[0].url" />
-        </div>
+    <ListingItem :imageUrl="value.images[0].url">
         <div>
             <div class="address">{{ value.address.city }}, {{ value.address.state }}, {{ value.address.country }}</div>
             <div class="name">{{ value.name }}</div>
-            <SummaryList :items="rooms" />
-            <SummaryList :items="amenities" />
+            <ListingSummary :value="value" />
         </div>
         <Rating class="listing-rating" :value="value.rating" />
         <div class="book-now-area d-flex flex-column align-end">
             <Price class="book-price" :value="value.price" />
-            <Button>BOOK NOW</Button>
+            <Button @click.native="onBookNowClick(value)">BOOK NOW</Button>
         </div>
-    </div>
+    </ListingItem>
 </template>
 
 <script>
 import Rating from './Rating.vue';
 import Price from './Price.vue';
 import Button from './Button.vue';
-import SummaryList from './SummaryList.vue';
+import ListingItem from './ListingItem.vue';
+import ListingSummary from './ListingSummary.vue';
+import { mapActions, mapMutations } from 'vuex';
 
 export default {
     components: {
+        ListingItem,
         Rating,
         Price,
         Button,
-        SummaryList,
+        ListingSummary,
     },
     props: {
         value: {
@@ -36,62 +35,33 @@ export default {
             default: null,
         },
     },
-    computed: {
-        rooms() {
-            const list = [];
-            if (this.value) {
-                list.push(`${this.value.occupancy} guests`);
-                if (this.value.bedrooms > 0) {
-                    list.push(`${this.value.bedrooms} bedrooms`);
-                }
-                if (this.value.bathrooms > 0) {
-                    list.push(`${this.value.bathrooms} bathrooms`);
-                }
-            }
-            return list;
+    methods: {
+        ...mapActions(['gotoPage']),
+        ...mapMutations(['updateCurrentListing']),
+        onBookNowClick(listing) {
+            this.updateCurrentListing(listing);
+            this.gotoPage('BookListing');
         },
-        amenities() {
-            return this.value ? Object.keys(this.value.amenities).reduce((results, key) => {
-                if (this.value.amenities[key]) {
-                    results.push(key);
-                }
-                return results;
-            }, []) : [];
-        }
-    }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
-.listing-item {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  height: 208px;
 
-  h2 {
+h2 {
     margin-top: 0px;
-  }
-  img {
-    object-fit: cover;
-    width: 300px;
-    height: 100%;
-    margin-right: 12px;
-  }
+}
 
-  .name {
-      font-size: 24px;
-      color: $grey-text;
-      padding-bottom: 8px;
-  }
+.name {
+    font-size: 24px;
+    color: $grey-text;
+    padding-bottom: 8px;
+}
 
-  .address {
-      font-size: 16px;
-      color: $grey-text;
-      padding-bottom: 8px;
-  }
-
+.address {
+    font-size: 16px;
+    color: $grey-text;
+    padding-bottom: 8px;
 }
 
 .listing-rating {

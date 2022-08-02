@@ -12,12 +12,27 @@ function login({ email, password }) {
     return instance.post(`/auth/login`, { email, password });
 }
 
+function getCurrentUser() {
+    return instance.get(`/auth/me`);
+}
+
 function getListings() {
     return instance.get(`/listings`);
 }
 
+function getMyReservations() {
+    return instance.get(`/my/reservations`);
+}
+
+function deleteReservation({ id } = {}) {
+    return instance.delete(`/reservations/${id}`);
+}
+
 export default {
+    getCurrentUser,
     setToken,
     login,
     getListings,
+    getMyReservations,
+    deleteReservation,
 }

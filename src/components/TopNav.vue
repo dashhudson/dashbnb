@@ -1,13 +1,13 @@
 <template>
     <header class="top-nav">
         <div class="center">
-            <div class="title" @click="gotoPage('listings')"><span class='logo-gold'>DASH</span><span class='logo-black'>BNB</span></div>
+            <div class="title" @click="gotoPage('Listings')"><span class='logo-gold'>DASH</span><span class='logo-black'>BNB</span></div>
         </div>
         <div class="right">
             <template v-if="isLoggedIn">
                 <nav>
                   <ul>
-                    <li><a @click="gotoPage('NotFound')"><img src="@/assets/icons/calendar-check.svg" /> My Bookings</a></li>
+                    <li><a @click="gotoPage('MyBookings')"><img src="@/assets/icons/calendar-check.svg" /> My Bookings</a></li>
                     <li><a @click="onLogoutClick"><img src="@/assets/icons/logout.svg" /> Logout</a></li>
                   </ul>
                 </nav>

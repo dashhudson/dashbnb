@@ -1,48 +1,58 @@
 <template>
     <div class="list-container">
-        <template v-for="(item, index) in items">
-            <div :key="`item-${index}`" class="item-details">
-                <div class="main-content-panel">
-                    <slot :item="item" />
-                </div>
+        <template v-if="hasItems">
+            <template v-for="(item, index) in items">
+                <Card :key="`item-${index}`">
+                    <div class="main-content-panel">
+                        <slot :item="item" />
+                    </div>
 
-                <div v-if="$slots['action-content']" class="action-panel">
-                    <slot name="action-content" :item="item" />
-                </div>
+                    <div v-if="$slots['action-content']" class="action-panel">
+                        <slot name="action-content" :item="item" />
+                    </div>
+                </Card>
+            </template>
+        </template>
+        <template v-else>
+            <div class="d-flex align-center justify-center">
+                <div>{{ emptyMessage }}</div>
             </div>
         </template>
     </div>
 </template>
 
 <script>
+import Card from './Card.vue';
+
 export default {
   name: 'List',
+  components: {
+    Card,
+  },
   props: {
     /**
      * items to display in the list
      */
     items: {
       type: Array,
-      default: () => [],
+      default: null,
+    },
+    emptyMessage: {
+        type: String,
+        default: null,
     },
   },
+  computed: {
+    hasItems() {
+        return Array.isArray(this.items) && this.items?.length > 0;
+    },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .list-container {
   overflow: auto;
-}
-
-.item-details {
-  background-color: $white;
-  display: flex;
-  flex-grow: 1;
-  margin-bottom: 16px;
-  border-radius: $round-corner-small;
-  padding: 16px;
-  align-items: center;
-  box-shadow: $shadow-card;
 }
 
 .main-content-panel {
