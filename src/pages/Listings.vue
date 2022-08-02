@@ -13,7 +13,7 @@
             Loading ...
         </template>
         <template v-else>
-            <List :items="listings" empty-message="No Listings Found">
+            <List :items="listings">
                 <template #default="{ item: listing }">
                 <Listing :key="listing.id" :value="listing" />
                 </template>

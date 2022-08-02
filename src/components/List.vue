@@ -39,7 +39,7 @@ export default {
     },
     emptyMessage: {
         type: String,
-        default: 'No Items',
+        default: null,
     },
   },
   computed: {
