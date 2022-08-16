@@ -20,15 +20,15 @@ export default {
       return state.currentPage;
     },
     currentUser(state) {
-        return state.currentUser;
+      return state.currentUser;
     },
     currentListing(state) {
-        return state.currentListing;
+      return state.currentListing;
     },
   },
   mutations: {
     updateCurrentUser(state, newUser) {
-        state.currentUser = newUser;
+      state.currentUser = newUser;
     },
     updateAuthToken(state, newToken) {
       state.authToken = newToken;
@@ -40,7 +40,7 @@ export default {
       }
     },
     updateCurrentListing(state, newListing) {
-        state.currentListing = newListing;
+      state.currentListing = newListing;
     },
     setListings(state, newListings) {
       state.listings = newListings;
@@ -50,7 +50,7 @@ export default {
     },
     setCurrentPage(state, page) {
       state.currentPage = page;
-    }
+    },
   },
   actions: {
     async init({ dispatch, commit }) {
@@ -61,38 +61,37 @@ export default {
       commit('setCurrentPage', DEFAULT_PAGE);
     },
     async login({ dispatch, commit }, { email, password }) {
-        const response = await apis.login({ email, password });
-        dispatch('setAuthToken', response.data.authToken);
-        commit('setCurrentPage', DEFAULT_PAGE);
+      const response = await apis.login({ email, password });
+      dispatch('setAuthToken', response.data.authToken);
+      commit('setCurrentPage', DEFAULT_PAGE);
     },
     async logout({ dispatch }) {
-        dispatch('setAuthToken', null);
+      dispatch('setAuthToken', null);
     },
     async setAuthToken({ commit }, token) {
-        commit('updateAuthToken', token);
-        if (token) {
-            const response = await apis.getCurrentUser();
-            commit('updateCurrentUser', response?.data);
-        } else {
-            commit('updateCurrentUser', null);
-        }
+      commit('updateAuthToken', token);
+      if (token) {
+        const response = await apis.getCurrentUser();
+        commit('updateCurrentUser', response?.data);
+      } else {
+        commit('updateCurrentUser', null);
+      }
     },
     async getListings({ commit }) {
       const response = await apis.getListings();
       commit('setListings', response.data.items);
     },
     async getBookings({ commit }) {
-        const response = await apis.getMyReservations();
-        commit('setBookings', response.data.items);
+      const response = await apis.getMyReservations();
+      commit('setBookings', response.data.items);
     },
     async deleteBooking({ dispatch }, { id }) {
-        await apis.deleteReservation({ id });
-        dispatch('getBookings');
+      await apis.deleteReservation({ id });
+      dispatch('getBookings');
     },
     async gotoPage({ commit }, page) {
       commit('setCurrentPage', page);
-    }
+    },
   },
-  modules: {
-  }
+  modules: {},
 };

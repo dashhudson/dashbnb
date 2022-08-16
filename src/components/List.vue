@@ -1,24 +1,24 @@
 <template>
-    <div class="list-container">
-        <template v-if="hasItems">
-            <template v-for="(item, index) in items">
-                <Card :key="`item-${index}`">
-                    <div class="main-content-panel">
-                        <slot :item="item" />
-                    </div>
+  <div class="list-container">
+    <template v-if="hasItems">
+      <template v-for="(item, index) in items">
+        <Card :key="`item-${index}`">
+          <div class="main-content-panel">
+            <slot :item="item" />
+          </div>
 
-                    <div v-if="$slots['action-content']" class="action-panel">
-                        <slot name="action-content" :item="item" />
-                    </div>
-                </Card>
-            </template>
-        </template>
-        <template v-else>
-            <div class="d-flex align-center justify-center">
-                <div>{{ emptyMessage }}</div>
-            </div>
-        </template>
-    </div>
+          <div v-if="$slots['action-content']" class="action-panel">
+            <slot name="action-content" :item="item" />
+          </div>
+        </Card>
+      </template>
+    </template>
+    <template v-else>
+      <div class="d-flex align-center justify-center">
+        <div>{{ emptyMessage }}</div>
+      </div>
+    </template>
+  </div>
 </template>
 
 <script>
@@ -38,15 +38,15 @@ export default {
       default: null,
     },
     emptyMessage: {
-        type: String,
-        default: null,
+      type: String,
+      default: null,
     },
   },
   computed: {
     hasItems() {
-        return Array.isArray(this.items) && this.items?.length > 0;
+      return Array.isArray(this.items) && this.items?.length > 0;
     },
-  }
+  },
 };
 </script>
 
@@ -65,5 +65,4 @@ export default {
   display: flex;
   flex-direction: row;
 }
-
 </style>
