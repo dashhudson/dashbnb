@@ -32,6 +32,7 @@ export default {
       this.error = null;
       try {
         await this.login({ email: this.email, password: this.password });
+        this.$router.push({ name: 'Listings' });
       } catch (error) {
         this.error = error.response.data.message;
       }

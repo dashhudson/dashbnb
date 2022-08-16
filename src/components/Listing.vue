@@ -21,7 +21,7 @@ import Price from './Price.vue';
 import Button from './Button.vue';
 import ListingItem from './ListingItem.vue';
 import ListingSummary from './ListingSummary.vue';
-import { mapActions, mapMutations } from 'vuex';
+import { mapMutations } from 'vuex';
 
 export default {
   components: {
@@ -38,11 +38,10 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['gotoPage']),
     ...mapMutations(['updateCurrentListing']),
     onBookNowClick(listing) {
       this.updateCurrentListing(listing);
-      this.gotoPage('BookListing');
+      this.$router.push({ name: 'BookListing' });
     },
   },
 };

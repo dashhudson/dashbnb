@@ -1,20 +1,20 @@
 <template>
   <header class="top-nav">
     <div class="center">
-      <div class="title" @click="gotoPage('Listings')">
+      <router-link class="title" :to="{ name: 'Listings' }">
         <span class="logo-gold">DASH</span>
         <span class="logo-black">BNB</span>
-      </div>
+      </router-link>
     </div>
     <div class="right">
       <template v-if="isLoggedIn">
         <nav>
           <ul>
             <li>
-              <a @click="gotoPage('MyBookings')">
+              <router-link :to="{ name: 'MyBookings' }">
                 <img src="@/assets/icons/calendar-check.svg" />
                 My Bookings
-              </a>
+              </router-link>
             </li>
             <li>
               <a @click="onLogoutClick">
@@ -38,9 +38,9 @@ export default {
   },
   methods: {
     ...mapActions(['logout']),
-    ...mapActions(['gotoPage']),
-    onLogoutClick() {
-      this.logout();
+    async onLogoutClick() {
+      await this.logout();
+      this.$router.push({ name: 'Login' });
     },
   },
 };

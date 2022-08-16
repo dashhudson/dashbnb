@@ -1,12 +1,10 @@
 import apis from '../apis';
 
 const AUTH_TOKEN_NAME = 'authToken';
-const DEFAULT_PAGE = 'Listings';
 
 export default {
   state: {
     authToken: null,
-    currentPage: null,
     currentUser: null,
     currentListing: null,
     listings: null,
@@ -15,9 +13,6 @@ export default {
   getters: {
     isLoggedIn(state) {
       return !!state.authToken;
-    },
-    currentPage(state) {
-      return state.currentPage;
     },
     currentUser(state) {
       return state.currentUser;
@@ -48,22 +43,17 @@ export default {
     setBookings(state, newBookings) {
       state.bookings = newBookings;
     },
-    setCurrentPage(state, page) {
-      state.currentPage = page;
-    },
   },
   actions: {
-    async init({ dispatch, commit }) {
+    async init({ dispatch }) {
       const storedToken = localStorage.getItem(AUTH_TOKEN_NAME);
       if (storedToken) {
         dispatch('setAuthToken', storedToken);
       }
-      commit('setCurrentPage', DEFAULT_PAGE);
     },
-    async login({ dispatch, commit }, { email, password }) {
+    async login({ dispatch }, { email, password }) {
       const response = await apis.login({ email, password });
       dispatch('setAuthToken', response.data.authToken);
-      commit('setCurrentPage', DEFAULT_PAGE);
     },
     async logout({ dispatch }) {
       dispatch('setAuthToken', null);
@@ -88,9 +78,6 @@ export default {
     async deleteBooking({ dispatch }, { id }) {
       await apis.deleteReservation({ id });
       dispatch('getBookings');
-    },
-    async gotoPage({ commit }, page) {
-      commit('setCurrentPage', page);
     },
   },
   modules: {},
