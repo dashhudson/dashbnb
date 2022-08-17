@@ -13,7 +13,11 @@ describe('pages/Login.vue', () => {
   let store;
 
   function createComponent() {
-    const component = shallowMount(Login, { localVue, store });
+    const component = shallowMount(Login, {
+      localVue,
+      store,
+      mocks: { $router: { push: jest.fn() } },
+    });
     return component;
   }
 

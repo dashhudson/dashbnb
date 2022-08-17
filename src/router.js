@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound.vue';
 Vue.use(VueRouter);
 
 const routes = [
+  { name: 'Home', path: '', redirect: { name: 'Listings' } },
   { name: 'Login', path: '/login', component: Login },
   {
     name: 'Listings',
