@@ -25,12 +25,13 @@
         </div>
       </div>
     </template>
+    <template v-else-if="loading">Loading ...</template>
     <template v-else>Current Listing Not Found</template>
   </Card>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 import Card from '../components/Card.vue';
 import Rating from '../components/Rating.vue';
 import BookingForm from '../components/BookingForm.vue';
@@ -43,8 +44,31 @@ export default {
     ListingSummary,
     Rating,
   },
+  data() {
+    return {
+      loading: false,
+    };
+  },
   computed: {
     ...mapGetters(['currentListing']),
+  },
+  async created() {
+    const id = this.$route.params.id;
+    this.loading = true;
+    try {
+      this.getListing({ id });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.loading = false;
+    }
+  },
+  beforeDestroy() {
+    this.updateCurrentListing(null);
+  },
+  methods: {
+    ...mapActions(['getListing']),
+    ...mapMutations(['updateCurrentListing']),
   },
 };
 </script>

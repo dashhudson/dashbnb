@@ -18,11 +18,11 @@ const routes = [
     component: Listings,
   },
   {
-    name: 'BookListing',
-    path: '/book',
+    name: 'Listing',
+    path: '/listings/:id',
     component: BookListing,
   },
-  { name: 'MyBookings', path: '/bookings/my', component: MyBookings },
+  { name: 'MyBookings', path: '/bookings', component: MyBookings },
   { name: 'NotFound', path: '*', component: NotFound },
 ];
 

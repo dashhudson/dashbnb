@@ -71,6 +71,10 @@ export default {
       const response = await apis.getListings();
       commit('setListings', response.data.items);
     },
+    async getListing({ commit }, { id }) {
+      const response = await apis.getListing({ id });
+      commit('updateCurrentListing', response.data);
+    },
     async getBookings({ commit }) {
       const response = await apis.getMyReservations();
       commit('setBookings', response.data.items);

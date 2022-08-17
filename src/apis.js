@@ -20,6 +20,10 @@ function getListings() {
   return instance.get(`/listings`);
 }
 
+function getListing({ id }) {
+  return instance.get(`/listings/${id}`);
+}
+
 function getMyReservations() {
   return instance.get(`/my/reservations`);
 }
@@ -33,6 +37,7 @@ export default {
   setToken,
   login,
   getListings,
+  getListing,
   getMyReservations,
   deleteReservation,
 };

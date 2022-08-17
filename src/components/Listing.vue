@@ -21,7 +21,6 @@ import Price from './Price.vue';
 import Button from './Button.vue';
 import ListingItem from './ListingItem.vue';
 import ListingSummary from './ListingSummary.vue';
-import { mapMutations } from 'vuex';
 
 export default {
   components: {
@@ -38,10 +37,8 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['updateCurrentListing']),
     onBookNowClick(listing) {
-      this.updateCurrentListing(listing);
-      this.$router.push({ name: 'BookListing' });
+      this.$router.push({ name: 'Listing', params: { id: listing?.id } });
     },
   },
 };
