@@ -13,15 +13,15 @@ import MockAdapter from 'axios-mock-adapter';
 global.flushPromises = () => new Promise((resolve) => setTimeout(resolve));
 
 global.logAxiosError = (error) => {
-    if (error?.response?.request) {
-      return;
-    }
-    if (error?.isAxiosError && error?.response?.status >= 400) {
-      console.log(
-        `${error.response.config.method} ${error.response.config.url} Status ${error.response.status}`
-      );
-    }
-  };
+  if (error?.response?.request) {
+    return;
+  }
+  if (error?.isAxiosError && error?.response?.status >= 400) {
+    console.log(
+      `${error.response.config.method} ${error.response.config.url} Status ${error.response.status}`
+    );
+  }
+};
 
 const originalAxiosCreate = axios.create;
 axios.create = function createPatchedAxios(conf) {

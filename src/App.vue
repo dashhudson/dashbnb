@@ -2,47 +2,34 @@
   <div id="app">
     <TopNav />
     <div class="main-content">
-      <template v-if="isLoggedIn">
-        <component v-bind:is="currentPage"/>
-      </template>
-      <template v-else>
-        <Login />
-      </template>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import NotFound from './pages/NotFound.vue'
-import Login from './pages/Login.vue'
-import Listings from './pages/Listings.vue'
-import MyBookings from './pages/MyBookings.vue'
-import BookListing from './pages/BookListing.vue'
-import TopNav from './components/TopNav.vue'
+import TopNav from './components/TopNav.vue';
 import './styles/main.scss';
 
 export default {
   name: 'App',
   components: {
-    BookListing,
-    Listings,
-    Login,
-    MyBookings,
     TopNav,
-    NotFound
   },
   computed: {
     ...mapGetters(['isLoggedIn']),
-    ...mapGetters(['currentPage']),
   },
-  mounted() {
-    this.init();
+  async created() {
+    await this.init();
+    if (!this.isLoggedIn) {
+      this.$router.push({ name: 'Login' });
+    }
   },
   methods: {
     ...mapActions(['init']),
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">

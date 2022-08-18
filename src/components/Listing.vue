@@ -1,16 +1,18 @@
 <template>
-    <ListingItem :imageUrl="value.images[0].url">
-        <div>
-            <div class="address">{{ value.address.city }}, {{ value.address.state }}, {{ value.address.country }}</div>
-            <div class="name">{{ value.name }}</div>
-            <ListingSummary :value="value" />
-        </div>
-        <Rating class="listing-rating" :value="value.rating" />
-        <div class="book-now-area d-flex flex-column align-end">
-            <Price class="book-price" :value="value.price" />
-            <Button @click.native="onBookNowClick(value)">BOOK NOW</Button>
-        </div>
-    </ListingItem>
+  <ListingItem :imageUrl="value.images[0].url">
+    <div>
+      <div class="address">
+        {{ value.address.city }}, {{ value.address.state }}, {{ value.address.country }}
+      </div>
+      <div class="name">{{ value.name }}</div>
+      <ListingSummary :value="value" />
+    </div>
+    <Rating class="listing-rating" :value="value.rating" />
+    <div class="book-now-area d-flex flex-column align-end">
+      <Price class="book-price" :value="value.price" />
+      <Button @click.native="onBookNowClick(value)">BOOK NOW</Button>
+    </div>
+  </ListingItem>
 </template>
 
 <script>
@@ -19,49 +21,44 @@ import Price from './Price.vue';
 import Button from './Button.vue';
 import ListingItem from './ListingItem.vue';
 import ListingSummary from './ListingSummary.vue';
-import { mapActions, mapMutations } from 'vuex';
 
 export default {
-    components: {
-        ListingItem,
-        Rating,
-        Price,
-        Button,
-        ListingSummary,
+  components: {
+    ListingItem,
+    Rating,
+    Price,
+    Button,
+    ListingSummary,
+  },
+  props: {
+    value: {
+      type: Object,
+      default: null,
     },
-    props: {
-        value: {
-            type: Object,
-            default: null,
-        },
+  },
+  methods: {
+    onBookNowClick(listing) {
+      this.$router.push({ name: 'Listing', params: { id: listing?.id } });
     },
-    methods: {
-        ...mapActions(['gotoPage']),
-        ...mapMutations(['updateCurrentListing']),
-        onBookNowClick(listing) {
-            this.updateCurrentListing(listing);
-            this.gotoPage('BookListing');
-        },
-    },
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 h2 {
-    margin-top: 0px;
+  margin-top: 0px;
 }
 
 .name {
-    font-size: 24px;
-    color: $grey-text;
-    padding-bottom: 8px;
+  font-size: 24px;
+  color: $grey-text;
+  padding-bottom: 8px;
 }
 
 .address {
-    font-size: 16px;
-    color: $grey-text;
-    padding-bottom: 8px;
+  font-size: 16px;
+  color: $grey-text;
+  padding-bottom: 8px;
 }
 
 .listing-rating {

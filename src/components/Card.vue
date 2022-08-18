@@ -1,7 +1,7 @@
 <template>
-    <div class="card-content">
-        <slot />
-    </div>
+  <div class="card-content">
+    <slot />
+  </div>
 </template>
 
 <style lang="scss" scoped>

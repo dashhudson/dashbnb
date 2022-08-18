@@ -1,19 +1,32 @@
 <template>
-    <header class="top-nav">
-        <div class="center">
-            <div class="title" @click="gotoPage('Listings')"><span class='logo-gold'>DASH</span><span class='logo-black'>BNB</span></div>
-        </div>
-        <div class="right">
-            <template v-if="isLoggedIn">
-                <nav>
-                  <ul>
-                    <li><a @click="gotoPage('MyBookings')"><img src="@/assets/icons/calendar-check.svg" /> My Bookings</a></li>
-                    <li><a @click="onLogoutClick"><img src="@/assets/icons/logout.svg" /> Logout</a></li>
-                  </ul>
-                </nav>
-            </template>
-        </div>
-    </header>
+  <header class="top-nav">
+    <div class="center">
+      <router-link class="title" :to="{ name: 'Listings' }">
+        <span class="logo-gold">DASH</span>
+        <span class="logo-black">BNB</span>
+      </router-link>
+    </div>
+    <div class="right">
+      <template v-if="isLoggedIn">
+        <nav>
+          <ul>
+            <li>
+              <router-link :to="{ name: 'MyBookings' }">
+                <img src="@/assets/icons/calendar-check.svg" />
+                My Bookings
+              </router-link>
+            </li>
+            <li>
+              <a @click="onLogoutClick">
+                <img src="@/assets/icons/logout.svg" />
+                Logout
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </template>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -23,14 +36,14 @@ export default {
   computed: {
     ...mapGetters(['isLoggedIn']),
   },
-    methods: {
-        ...mapActions(['logout']),
-        ...mapActions(['gotoPage']),
-        onLogoutClick() {
-           this.logout();
-        },
-    }
-}
+  methods: {
+    ...mapActions(['logout']),
+    async onLogoutClick() {
+      await this.logout();
+      this.$router.push({ name: 'Login' });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -58,10 +71,10 @@ export default {
   }
 
   .right {
-      display: flex;
-      justify-content: flex-end;
-      width: 500px;
-      margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    width: 500px;
+    margin-left: auto;
   }
 
   .title {
